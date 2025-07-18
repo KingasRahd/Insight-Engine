@@ -2,10 +2,6 @@ import streamlit as st
 import re
 from streamlit_chat import message
 import helper
-# c=st.Page('c.py',title='a page')
-# b=st.Page('b.py',title='b page')
-# pg=st.navigation([c,b])
-# pg.run()
 
 st.sidebar.title('Insight Engine')
 st.sidebar.image('pictures/logo.png',width=100)
@@ -16,7 +12,7 @@ col=st.columns([1,1,1])
 col[1].image('pictures/avatar.png')
 col[1].markdown('### Let\'s Dive Deep')
 st.markdown('---')
-st.sidebar.markdown('###### Reload on Crash')
+st.sidebar.markdown('###### *Reload on Crash')
 st.sidebar.markdown('---')
 
 if 'Past_Session' not in st.session_state:

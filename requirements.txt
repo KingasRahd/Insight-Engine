@@ -1,0 +1,8 @@
+streamlit
+numpy
+pandas
+youtube-transcript-api
+python-dotenv
+scikit-learn
+streamlit-chat
+langchain-google-genai

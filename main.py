@@ -5,6 +5,7 @@ import helper
 
 st.sidebar.title('Insight Engine')
 st.sidebar.image('pictures/logo.png',width=100)
+st.sidebar.markdown('###### ~built by Sagnik')
 st.sidebar.markdown('---')
 url=st.sidebar.text_input("Enter Video URL")
 

@@ -23,6 +23,7 @@ try:
     pattern = r"(?:v=|\/)([0-9A-Za-z_-]{11})"
     match = re.search(pattern, url)
     vid=match.group(1) 
+    st.title(1)
     
     if ('Transcript' not in st.session_state) or (st.session_state['VID']!=vid):
 
@@ -33,6 +34,7 @@ try:
             transcript=helper.transcription(vid)
             transcript=helper.embeddor(transcript)  
             st.session_state['Transcript']=transcript 
+            st.title(2)
         
 
     upload=st.sidebar.file_uploader('Import Chat History')

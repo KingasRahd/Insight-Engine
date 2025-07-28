@@ -6,3 +6,5 @@ python-dotenv
 scikit-learn
 streamlit-chat
 langchain-google-genai
+requests
+beautifulsoup4

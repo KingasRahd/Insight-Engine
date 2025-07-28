@@ -7,8 +7,8 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from sklearn.metrics.pairwise import cosine_similarity
 from langchain_google_genai import ChatGoogleGenerativeAI
 import streamlit as st
-
-
+import requests
+from bs4 import BeautifulSoup
 import asyncio
 import sys
 
@@ -31,9 +31,16 @@ def transcription(vid):
     chunks=[]
     i=0
     l=['en','hi', 'bn', 'gu', 'as', 'kn', 'ml', 'mr', 'ne', 'or', 'pa', 'sa', 'ta', 'te', 'ur']
-
     yt=YouTubeTranscriptApi()
-    transcript=yt.fetch(vid,languages=l)
+
+    ips,ports= get_proxy()
+    for ip,port in zip(ips,ports):
+        try:
+            YouTubeTranscriptApi._proxy=f'http://{ip}:{port}'
+            transcript=yt.fetch(vid,languages=l)
+            break
+        except:
+            st.write('Failed to fetch Transcript')
     
     
     while i<len(transcript):
@@ -157,3 +164,15 @@ Text to summarize:
     response=llm.invoke(prompt)
     return response.content
     
+def get_proxy():
+    ip=list()
+    port=list()
+    url='https://free-proxy-list.net/en/'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    rows=soup.find_all('tr')[1:11]
+    for i in rows:
+        data=i.find_all('td')
+        ip.append(data[0].text)
+        port.append(data[1].text)
+        return ip,port

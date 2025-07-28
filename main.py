@@ -84,5 +84,4 @@ try:
     
     st.sidebar.download_button("Export Chat History",helper.exporter(st.session_state['Chats']))
 except Exception as e:
-    #st.write(e)
     pass

@@ -32,6 +32,7 @@ try:
         st.session_state['Chat_Index']=0
         with st.spinner('Analyzing Video...'):
             st.title(3)
+            print("hello 3 here")
             transcript=helper.transcription(vid)
             st.title(4)
             transcript=helper.embeddor(transcript)  

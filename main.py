@@ -22,8 +22,7 @@ try:
 
     pattern = r"(?:v=|\/)([0-9A-Za-z_-]{11})"
     match = re.search(pattern, url)
-    vid=match.group(1) 
-    st.title(1)
+    vid=match.group(1)
     
     if ('Transcript' not in st.session_state) or (st.session_state['VID']!=vid):
 
@@ -31,14 +30,10 @@ try:
         st.session_state['Chats']=[]
         st.session_state['Chat_Index']=0
         with st.spinner('Analyzing Video...'):
-            st.title(3)
             print("hello 3 here")
             transcript=helper.transcription(vid)
-            st.title(4)
             transcript=helper.embeddor(transcript)  
-            st.title(5)
             st.session_state['Transcript']=transcript 
-            st.title(2)
         
 
     upload=st.sidebar.file_uploader('Import Chat History')
@@ -88,5 +83,5 @@ try:
     
     st.sidebar.download_button("Export Chat History",helper.exporter(st.session_state['Chats']))
 except Exception as e:
-    st.write(e)
+    #st.write(e)
     pass

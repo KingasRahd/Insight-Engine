@@ -31,8 +31,11 @@ try:
         st.session_state['Chats']=[]
         st.session_state['Chat_Index']=0
         with st.spinner('Analyzing Video...'):
+            st.title(3)
             transcript=helper.transcription(vid)
+            st.title(4)
             transcript=helper.embeddor(transcript)  
+            st.title(5)
             st.session_state['Transcript']=transcript 
             st.title(2)
         

@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 import asyncio
 import sys
 
+
 if sys.version_info >= (3, 10):  # Important if you're using Python 3.10+
     try:
         asyncio.get_event_loop()
@@ -138,8 +139,8 @@ def real_time_embedder(query,ans,transcript):
     return pd.concat([transcript,qna_df],ignore_index=True).drop_duplicates(['Chunk'])
 
 def exporter(chats):
-    st='\n\n~'.join([f"{i['role']}:{i['content']}" for i in chats])
-    return st
+    chat_history='\n\n~'.join([f"{i['role']}:{i['content']}" for i in chats])
+    return chat_history
 
 def importer(file,transcript):
     
@@ -170,9 +171,9 @@ def get_proxy():
     url='https://free-proxy-list.net/en/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    rows=soup.find_all('tr')[1:11]
+    rows=soup.find_all('tr')[1:51]
     for i in rows:
         data=i.find_all('td')
         ip.append(data[0].text)
         port.append(data[1].text)
-        return ip,port
+    return ip,port

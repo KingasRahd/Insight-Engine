@@ -2,6 +2,8 @@ import streamlit as st
 import re
 from streamlit_chat import message
 import helper
+import uuid
+import requests
 
 st.sidebar.title('Insight Engine')
 st.sidebar.image('pictures/logo.png',width=100)
@@ -45,22 +47,22 @@ try:
         st.session_state['Past_Session']=helper.past_session_summarize(text)
         st.sidebar.download_button("Export Chat History",helper.exporter(st.session_state['Chats']))
    
-        for msg in st.session_state['Chats']:
+        for i,msg in enumerate(st.session_state['Chats']):
             if msg['role']=='user':
-                message(msg['content'],is_user=True)
+                message(msg['content'],is_user=True,key=uuid.uuid4().hex)
             else:
-                message(msg['content'])
+                message(msg['content'],key=uuid.uuid4().hex)
 
     query=st.chat_input('Ask anything')
 
     if query!=None:
         st.session_state['Chats'].append({'role':'user','content':query})
 
-        for msg in st.session_state['Chats']:
+        for i,msg in enumerate(st.session_state['Chats']):
             if msg['role']=='user':
-                message(msg['content'],is_user=True)
+                message(msg['content'],is_user=True,key=uuid.uuid4().hex)
             else:
-                message(msg['content'])
+                message(msg['content'],key=uuid.uuid4().hex)
 
         st.session_state['Chat_Index']+=1
 
@@ -81,7 +83,12 @@ try:
            
     st.session_state['Chat_Index']+=1
 
-    
     st.sidebar.download_button("Export Chat History",helper.exporter(st.session_state['Chats']))
-except Exception as e:
+
+except AttributeError as e:
     pass
+except TypeError as e:
+    pass
+except requests.exceptions.SSLError:
+    col=st.columns([1,2,1])
+    col[1].markdown('##### Please use VPN to proceed...!!!')

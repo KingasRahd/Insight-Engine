@@ -92,3 +92,5 @@ except TypeError as e:
 except requests.exceptions.SSLError:
     col=st.columns([1,2,1])
     col[1].markdown('##### Please use VPN to proceed...!!!')
+except UnboundLocalError as e:
+    col[1].markdown('##### Quota exceeded.Try again later...!!!')

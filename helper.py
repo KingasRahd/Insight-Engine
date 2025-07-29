@@ -41,7 +41,7 @@ def transcription(vid):
             transcript=yt.fetch(vid,languages=l)
             break
         except:
-            st.write('Failed to fetch Transcript')
+            st.write(f'Failed to fetch Transcript through {ip}:{port}')
     
     
     while i<len(transcript):

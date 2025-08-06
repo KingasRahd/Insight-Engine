@@ -34,14 +34,13 @@ def transcription(vid):
     l=['en','hi', 'bn', 'gu', 'as', 'kn', 'ml', 'mr', 'ne', 'or', 'pa', 'sa', 'ta', 'te', 'ur']
     yt=YouTubeTranscriptApi()
 
-    ips,ports= get_proxy()
-    for ip,port in zip(ips,ports):
-        try:
-            YouTubeTranscriptApi._proxy=f'http://{ip}:{port}'
-            transcript=yt.fetch(vid,languages=l)
-            break
-        except:
-            st.write(f'Failed to fetch Transcript through {ip}:{port}')
+    try:
+        st.write(1)
+        transcript=yt.fetch(vid,languages=l)
+        st.write(2)
+        #break
+    except:
+        st.write(f'Failed to fetch Transcript through')
     
     
     while i<len(transcript):

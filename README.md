@@ -2,8 +2,6 @@
 
 **Insight Engine** is a powerful Streamlit-based application that transforms YouTube videos into interactive, insightful conversations. It allows users to ask detailed questions, import past chats, and export thier interactions.
 
-#### Link to Web App: https://insight-engine-7dtfotu7twxka7rbnczejo.streamlit.app/
-
 ## 🚀 Features
 
 - 🎥 **YouTube Video Q&A**: Ask questions based on the video transcript. Get clear, LLM-powered answers.
